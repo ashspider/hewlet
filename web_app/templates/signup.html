@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %} 
+
+
+
+
+<div id="signup" >
+
+    <div class="content" id="signup" >
+        <h2 class="content-head is-center">Signup</h2>
+
+
+        <div class="pure-g">
+            <div class="l-box-lrg pure-u-1 pure-u-md-2-5" id="login-col">
+               
+                <form class="pure-form pure-form-stacked" method="post" >
+                     {% include "flash.html" %}  
+                     
+                        <fieldset>
+                            {{ form.hidden_tag() }}
+                            {{ form.email(placeholder="Email") }}
+                            {{ form.username(placeholder="Username") }}
+                            {{ form.password(placeholder="Password") }}
+                            
+                            
+                        <button style="margin-bottom:20px;" type="submit" class="pure-button">Signup</button>
+                        </br>
+                        </fieldset>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    
+
+</div>
+
+
+{% endblock %}            
