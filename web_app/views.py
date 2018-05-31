@@ -46,7 +46,7 @@ def login():
 def signup():
     form = SignupForm()
     verified=False;
-    if request.method == 'POST' and form.validate_on_submit():
+    if request.method == 'POST' 
         
         pass_hash = generate_password_hash(form.password.data, method='pbkdf2:sha256')
         verified = True;
@@ -67,8 +67,7 @@ def signup():
 
         #user = mongo.db.users.find_one({"_id": form.username.data})
         
-    if request.method == 'POST' and not form.validate_on_submit():
-         flash("Invalid email, username or password!", category='error')
+    
     return render_template('signup.html', title='signup', form=form)
 
 
