@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash
 from project.token import generate_confirmation_token, confirm_token
 import hashlib, binascii
 import datetime
-
+from project.email import send_email
 
 
 @app.route('/')
