@@ -1,19 +1,25 @@
+{% extends "layout.html" %}
+{% block content %} 
 
 
 
 
+<div id="login" >
+
+    <div class="content" id="login" >
+        <h2 class="content-head is-center">Login</h2>
 
 
+        <div class="pure-g">
+            <div class="l-box-lrg pure-u-1 pure-u-md-2-5" id="login-col">
+               
+                <form class="pure-form pure-form-stacked" method="post" name=form>
+                       {% include "flash.html" %}  
+                        <fieldset>
 
-
-
-
-
-
-
-
-
-<p>Welcome! Thanks for signing up. Please follow this link to activate your account:</p>
+                          <p>Welcome! Thanks for signing up. Please follow this link to activate your account:</p>
 <p><a href="{{ confirm_url }}">{{ confirm_url }}</a></p>
 <br>
 <p>Cheers!</p>
+
+                  </fieldset>
