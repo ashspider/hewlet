@@ -1,7 +1,8 @@
 from web_app import *
 from werkzeug.security import generate_password_hash
-
+from project.token import generate_confirmation_token, confirm_token
 import hashlib, binascii
+import datetime
 
 
 
@@ -41,6 +42,26 @@ def login():
     return render_template('login.html', title='login', form=form)
 
 
+@app.route('/confirm/<token>')
+@login_required
+def confirm_email(token):
+    try:
+        email = confirm_token(token)
+    except:
+        flash('The confirmation link is invalid or has expired.', 'danger')
+    user = User.query.filter_by(email=email).first_or_404()
+    if user.confirmed:
+        flash('Account already confirmed. Please login.', 'success')
+    else:
+        user.confirmed = True
+        user.confirmed_on = datetime.datetime.now()
+        db.session.add(user)
+        db.session.commit()
+        flash('You have confirmed your account. Thanks!', 'success')
+        
+    return redirect(url_for('home.html'))
+
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -66,6 +87,8 @@ def signup():
             return  str(e);#"User already present in DB."
 
         #user = mongo.db.users.find_one({"_id": form.username.data})
+        
+        token = generate_confirmation_token(user.email)
         
     
     return render_template('signup.html', title='signup', form=form)
