@@ -89,6 +89,15 @@ def signup():
         #user = mongo.db.users.find_one({"_id": form.username.data})
         
         token = generate_confirmation_token(user.email)
+        confirm_url = url_for('user.confirm_email', token=token, _external=True)
+        html = render_template('user/activate.html', confirm_url=confirm_url)
+        subject = "Please confirm your email"
+        send_email(user.email, subject, html)
+
+        login_user(user)
+
+        flash('A confirmation email has been sent via email.', 'success')
+        return redirect(url_for("home.html"))
         
     
     return render_template('signup.html', title='signup', form=form)
