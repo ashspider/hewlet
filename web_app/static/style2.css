@@ -81,6 +81,11 @@ label {
     border-radius: 5px;
 }
 
+.forgot {
+  margin-top:-20px;
+  text-align:right;
+}
+
 a.pure-button-primary {
     background: white;
     color: #1f8dd6;
